@@ -4,7 +4,7 @@ const userSchema = new mongoose.Schema({
     email: {
         type: String,
         required: true,
-        unique: True
+        unique: true
     },
 
     password: {
@@ -16,10 +16,10 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true
     }
-} {
+}, {
     //storing data of user crestion snd updstion
     timestamps: true
 });
 //telling mongoose that this is model
-const user = mongoose.Model('user',userSchema);
-module.exports = user;
+const User = mongoose.model('User',userSchema);
+module.exports = User;
