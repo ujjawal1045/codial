@@ -87,12 +87,21 @@ module.exports.createSession = function(req, res){
         }
 
     });
-    
+
+}
+
+//removing session on signout
+module.exports.removeSession = function(req, res) {
+    if(req.cookies.user_id) {
+        User.findById(req.cookies.user_id, function(err,user){
+            if(user) {
+                return res.redirect('/users/sign-in');
+            }
+            
+
+        });
     
 
-    
-
-    
-
+    } 
 
 }
