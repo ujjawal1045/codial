@@ -20,6 +20,9 @@ module.exports.signUp = function(req, res){
 
 //rendering signin page
 module.exports.signIn = function(req, res){
+    if(req.isAuthenticated()) {
+        return res.redirect('/users/profile');
+    }
     return res.render('user_sign_in', {
         title: "codial || signIn"
     })
@@ -53,4 +56,11 @@ User.findOne({email: req.body.email}, function(err, user){
 ////get the signin data
 module.exports.createSession = function(req, res){
     return res.redirect('/');
+}
+
+//sigining out session
+module.exports.removeSession = function(req, res){
+    req.logout();
+    return res.redirect('/')
+
 }
