@@ -18,6 +18,9 @@
     "express": "^4.17.2",
     "express-ejs-layouts": "^2.5.1",
     "git": "^0.1.5",
-    "mongoose": "^6.2.3"
+    "local": "^0.3.3",
+    "mongoose": "^6.2.3",
+    "passport": "^0.5.2",
+    "passport-local": "^1.0.0"
   }
 }
