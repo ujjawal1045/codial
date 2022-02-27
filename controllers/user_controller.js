@@ -49,5 +49,5 @@ User.findOne({email: req.body.email}, function(err, user){
 
 ////get the signin data
 module.exports.createSession = function(req, res){
-    //todo
+    
 }
