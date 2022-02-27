@@ -26,7 +26,7 @@ app.set('layout extractScripts',true);
 // setup the view engine
 app.set('view engine', 'ejs');
 app.set('views', './views');
-
+//middleware
 app.use(session({
     name: 'coedial',
     //todo change the secret before deployent in production mode
@@ -40,6 +40,8 @@ app.use(session({
 
 app.use(passport.initialize());
 app.use(passport.session());
+
+app.use(passport.setAuthenticatedUser);
 
 // use express router
 app.use('/', require('./routes'));
