@@ -49,5 +49,36 @@ User.findOne({email: req.body.email}, function(err, user){
 
 ////get the signin data
 module.exports.createSession = function(req, res){
+    //finding user present or not
+    User.findOne({email:req.body.email}, function(err, user){
+        if(err){console.log('error in finding the user in signing In'); return}
+
+        //if user found handle it
+        if(user) {
+
+            //handle if password mismatch
+            if(user.password != req.body.password){
+                 console.log('invalid password');
+                return res.redirect('back');
+            }
+
+            //handle session creation
+            res.cookie('user_id', user.id);
+            return res.redirect('/users/profile');
+
+        } else {
+            //if user not found handle it
+            return res.redirect('back');
+
+        }
+
+    });
     
+    
+
+    
+
+    
+
+
 }
