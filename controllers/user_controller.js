@@ -3,9 +3,23 @@ const User = require('../models/user');
 
 module.exports.profile = function(req, res) {
     // res.end('<h1> user profile</h1>');
-    return res.render('user_profile', {
-        title: 'user profile'
-    })
+    
+    if(req.cookies.user_id) {
+        User.findById(req.cookies.user_id, function(err,user){
+            if(user) {
+                return res.render('user_profile', {
+                    title: 'user profile',
+                    user:user
+                })
+            }
+            return res.redirect('/users/sign-in');
+
+        });
+    
+
+    } else {
+        return res.redirect('/users/sign-in');
+    }
 }
 //rendering signup page
 
@@ -58,7 +72,7 @@ module.exports.createSession = function(req, res){
 
             //handle if password mismatch
             if(user.password != req.body.password){
-                 console.log('invalid password');
+             //    console.log('invalid password');
                 return res.redirect('back');
             }
 
