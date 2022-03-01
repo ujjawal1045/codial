@@ -6,6 +6,7 @@ const user = require('../models/user');
 
 
 //authentcation using passport
+ 
 passport.use(new LocalStrategy({
         usernameField: 'email'
     },
