@@ -11,6 +11,7 @@ router.get('/', homeController.home);
 router.use('/users', require('./users'));
 router.use('/test', require('./test'));
 router.use('/post', require('./post'));
+router.use('/comments',require('./comments'));
 
 
 module.exports = router;
