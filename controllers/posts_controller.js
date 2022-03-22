@@ -11,6 +11,7 @@ module.exports.create = function(req, res) {
             console.log('error in creating post');
             return;
     }
+    req.flash('success', 'Post published');
     return res.redirect('back');
     });
 }
@@ -20,9 +21,11 @@ module.exports.destroy = function(req, res) {
         //.id means converting the object id to string otherwise ._id will use for number
         if(post.user == req.user.id) {
             post.remove();
+            req.flash('error', 'Post deleted');
 
             Comment.deleteMany({post: req.params.id}, function(err) {
                 return res.redirect('back');
+
             });
 
         } else {

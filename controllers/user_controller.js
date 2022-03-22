@@ -70,12 +70,15 @@ User.findOne({email: req.body.email}, function(err, user){
 
 ////get the signin data
 module.exports.createSession = function(req, res){
+    req.flash('success', 'Logged in Successfully');
     return res.redirect('/');
 }
 
 //sigining out session
 module.exports.removeSession = function(req, res){
     req.logout();
+    req.flash('success', 'You have Logged out');
+
     return res.redirect('/')
 
 }
