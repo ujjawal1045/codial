@@ -1,8 +1,40 @@
-<h1>Sign In</h1>
+
+<!-- <h1>Sign In</h1>
 
 <form action="/users/create-session" method="post" >
     <input type="email" name="email" placeholder="Email" required>
     <input type="password" name="password" placeholder="Password" required>
     <input type="submit" value="Sign In">
 
+</form> --> 
+<link rel="stylesheet" href="/css/signin.css">
+
+
+
+
+<div class="background">
+    <div class="shape"></div>
+    <div class="shape"></div>
+</div>
+<form action="/users/create-session" method="post">
+    <h3>Login Here</h3>
+
+    <label for="username">Username</label>
+    <input type="email" name="email" placeholder="Email" required id="username">
+
+    <label for="password">Password</label>
+    <input type="password" name="password" placeholder="Password" required id="password">
+
+    <button>Log In</button>
+    <div class="social">
+      <div class="go"><i class="fab fa-google"></i>  Google</div>
+      <div class="fb"><i class="fab fa-facebook"></i>  Facebook</div>
+    </div>
 </form>
+
+
+
+
+
+
+

@@ -1,7 +1,7 @@
 /* Style the header with a grey background and some padding */
 .header {
   overflow: hidden;
-  background-color: #1480e6dc;
+  background-color: #4912df;
   padding: 8px 10px; }
 
 /* Style the header links */
@@ -17,8 +17,12 @@
 
 /* Style the logo link (notice that we set the same value of line-height and font-size to prevent the header to increase when the font gets bigger */
 .header a.logo {
-  font-size: 25px;
-  font-weight: bold; }
+  font-size: 45px;
+  font-weight: bold;
+  font-family: Arial, Helvetica, sans-serif; }
+
+a {
+  font-family: Arial, Helvetica, sans-serif; }
 
 /* Change the background color on mouse-over */
 .header a:hover {
