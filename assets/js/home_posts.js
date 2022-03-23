@@ -11,8 +11,18 @@
                 url: '/post/create',
                 data: newPostForm.serialize(),
                 success: function(data) {
+                    new Noty({
+                        theme: 'relax', 
+                        text: "post published",
+                        type: 'success',
+                        layout: 'topRight',
+                        timeout: 1500
+                    }).show();
                     let newPost = newPostDom(data.data.post);
                     $('#post-list-container>ul').prepend(newPost);
+                    //req.flash('success', 'Post published');
+
+                    deletePost($(` .delete-post-button`, newPost));
 
                 }, error: function(error) {
                     console.log(error.responseText);
@@ -56,6 +66,34 @@
                 </div>
                 
             </li> `)
+   }
+
+
+
+
+   //method to delete a post from DOM
+   let deletePost = function(deleteLink) {
+       $(deleteLink).click(function(e) {
+           e.preventDefault();
+
+           $.ajax({
+               type: 'get',
+               url: $(deleteLink).prop('href'),
+               success: function(data) {
+                new Noty({
+                    theme: 'relax', 
+                    text: "post deleted",
+                    type: 'error',
+                    layout: 'topRight',
+                    timeout: 1500
+                }).show();
+                   $(`#post-${data.data.post_id}`).remove();
+
+               },error: function(error) {
+                   console.log(error.responseText);
+               }
+           });
+       });
    }
 
 
