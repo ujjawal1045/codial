@@ -3,7 +3,7 @@ const Post = require('../models/post');
 const Comment = require('../models/comment');
 
 module.exports.create = function(req, res) {
-    Post.create({
+      Post.create({
         content: req.body.content,
         user: req.user._id
     },function(err, post) {
@@ -11,9 +11,12 @@ module.exports.create = function(req, res) {
             console.log('error in creating post');
             return;
     }
+    
+
     req.flash('success', 'Post published');
     return res.redirect('back');
     });
+    
 }
 
 module.exports.destroy = function(req, res) {
