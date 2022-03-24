@@ -18,6 +18,7 @@
                         layout: 'topRight',
                         timeout: 1500
                     }).show();
+                    //.populate('user');
                     let newPost = newPostDom(data.data.post);
                     $('#post-list-container>ul').prepend(newPost);
                     //req.flash('success', 'Post published');
