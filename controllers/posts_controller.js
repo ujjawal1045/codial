@@ -44,7 +44,6 @@ module.exports.destroy = async function(req, res) {
 
     if(post.user == req.user.id) {
         post.remove();
-        req.flash('error', 'Post deleted');
 
        await Comment.deleteMany({post: req.params.id});
 
@@ -54,17 +53,22 @@ module.exports.destroy = async function(req, res) {
                    post_id: req.params.id
                },
                message: "post deleted"
-           })
+           });
        }
+
+       req.flash('error', 'Post deleted');
+
        return res.redirect('back');
 
 
     } else {
+        req.flash('error', 'You cannot delete this post');
+
         return res.redirect('back');
     }
 
     }catch(err) {
-        console.log('Error', err);
+        req.flash('Error', err);
         return;
     }
     
