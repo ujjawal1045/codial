@@ -1,4 +1,4 @@
-const { remove } = require('../models/post');
+// const { remove } = require('../models/post');
 const Post = require('../models/post');
 const Comment = require('../models/comment');
 
@@ -11,13 +11,14 @@ module.exports.create = async function(req, res) {
 
 
         if(req.xhr) {
+            post = await post.populate('user', 'name');
             return res.status(200).json({
                 data: {
                     post: post
                 }, 
                 message: "post created!",
 
-            })
+            });
 
         }
         
@@ -26,8 +27,10 @@ module.exports.create = async function(req, res) {
         return res.redirect('back');
 
     } catch(err) {
-        console.log('Error', err);
-        return;
+        console.log(err);
+        req.flash('Error', err);
+        return res.redirect('back');
+        //return;
 
 
     }
@@ -69,7 +72,7 @@ module.exports.destroy = async function(req, res) {
 
     }catch(err) {
         req.flash('Error', err);
-        return;
+        return res.redirect('back');
     }
     
 }

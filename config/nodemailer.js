@@ -1,6 +1,6 @@
 const nodemailer = require("nodemailer");
 const ejs = require('ejs');
-const path = require('path');
+const path = require('path')
 
 
 
@@ -11,26 +11,28 @@ let transporter = nodemailer.createTransport({
     secure: false,//only true for port no 465, false for other all port
     auth: {
         user: 'ujjawals286',
-        pass: '94733482Uj@&%#'
+         pass: 'xpnaiuvkbbcmgjcz'
+        //pass: '94733482Uj@&%#'
+
     }
 
 });
 
 let renderTemplate = (data, relativePath) => {
     let mailHTML;
-    ejs.renderFile{
-        path.join(__dirname, '../views/mailers', relativePath);
+    ejs.renderFile(
+        path.join(__dirname, '../views/mailers', relativePath),
         data,
         function(err, template) {
             if(err) {
                 console.log('err in rendering template');
-                return;
+                return
             }
 
             mailHTML = template;
 
         }
-    }
+    )
 
     return mailHTML;
 }
@@ -38,5 +40,4 @@ let renderTemplate = (data, relativePath) => {
 module.exports = {
     transporter: transporter,
     renderTemplate: renderTemplate
-}
 }
