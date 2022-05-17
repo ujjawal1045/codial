@@ -6,16 +6,16 @@ module.exports.toggleLike = async function(req, res) {
     try {
 
         //likes/toggle/?id=abcdef&type=Post
-        let Likeable;
+        let likeable;
         let deleted = false;
         if(req.query.type == 'Post') {
-            Likeable = await Post.findById(req.query.id).populate('likes');
+            likeable = await Post.findById(req.query.id).populate('likes');
         } else {
-            Likeable= await Comment.findById(req.query.id).populate('likes');
+            likeable= await Comment.findById(req.query.id).populate('likes');
         }
 
         // check if like already exist
-        let existingLike = await await Like.findOne({
+        let existingLike =  await Like.findOne({
             likeable: req.query.id,
             onModel: req.query.type,
             user:req.user._id
@@ -30,7 +30,7 @@ module.exports.toggleLike = async function(req, res) {
             let newLike = await Like.create({
                 user: req.user._id,
                 likeable: req.query.id,
-                onModel: req.query/type
+                onModel: req.query.type
             });
 
             likeable.likes.push(newLike._id);
@@ -47,6 +47,7 @@ module.exports.toggleLike = async function(req, res) {
         })
 
     } catch(err) {
+        console.log(err);
         return res.json(500, {
             message: 'Internal servor Error'
         });
